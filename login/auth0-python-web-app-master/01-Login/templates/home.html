@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="../static/CasaImages/favicon.ico">
+    <style>
+        .navbar-nav {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .navbar-brand img {
+            margin-left: 8px;
+            position: relative;
+            top: -1px;
+        }
+        .content {
+            margin-top: 100px; /* Adjusted for fixed navbar height */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    {% if session %}
+      <h1>Welcome {{session.userinfo.name}}!</h1>
+      <p><a href="/logout" id="qsLogoutBtn"></a></p>
+    <nav class="navbar navbar-light bg-light navbar-expand-lg fixed-top">
+        <a href="{{ url_for('home') }}" class="navbar-brand">
+            Tournament Time
+            <img src="{{ url_for('static', filename='CasaImages/favicon.ico') }}" width="30" height="30" alt="Favicon">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownTournaments" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tournaments
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownTournaments">
+                        <a class="dropdown-item" href="{{ url_for('mens_euro_2024') }}">Men's Euro's 2024</a>
+                        <a class="dropdown-item" href="{{ url_for('womens_euro_2025') }}">Women's Euro's 2025</a>
+                        <a class="dropdown-item" href="{{ url_for('mens_world_cup_2026') }}">Men's World Cup 2026</a>
+                        <a class="dropdown-item" href="{{ url_for('womens_world_cup_2027') }}">Women's World Cup 2027</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownCountdowns" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tournament Countdowns
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownCountdowns">
+                        <a class="dropdown-item" href="{{ url_for('mens_euro_2024a') }}">Men's Euro's 2024</a>
+                        <a class="dropdown-item" href="{{ url_for('womens_euro_2025a') }}">Women's Euro's 2025</a>
+                        <a class="dropdown-item" href="{{ url_for('mens_world_cup_2026a') }}">Men's World Cup 2026</a>
+                        <a class="dropdown-item" href="{{ url_for('womens_world_cup_2027a') }}">Women's World Cup 2027</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownStats" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tournament Stats
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownStats">
+                        <a class="dropdown-item" href="{{ url_for('mens_euro_2024b') }}">Men's Euro's 2024</a>
+                        <a class="dropdown-item" href="{{ url_for('womens_euro_2025b') }}">Women's Euro's 2025</a>
+                        <a class="dropdown-item" href="{{ url_for('mens_world_cup_2026b') }}">Men's World Cup 2026</a>
+                        <a class="dropdown-item" href="{{ url_for('womens_world_cup_2027b') }}">Women's World Cup 2027</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('about') }}" class="nav-link">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
+                </li>
+                {% if session %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content">
+            <h1>Welcome to Tournament Time!</h1>
+            <p>This is the home page. Choose a tournament or explore other sections.</p>
+        </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% else %}
+<h1 id="profileDropDown">Welcome to Tournament Time!</h1>
+<p><a href="/login" id="qsLoginBtn">Register / Login</a></p>
+{% endif %}
+</body>
+</html>
